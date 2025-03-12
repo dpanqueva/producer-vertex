@@ -1,2 +1,3 @@
 /Users/alejo/Documents/estudioUDEMY/producer-app/src/main/java/com/dieva/MainVerticle.java
+/Users/alejo/Documents/estudioUDEMY/producer-app/src/main/java/com/dieva/domain/model/Profession.java
 /Users/alejo/Documents/estudioUDEMY/producer-app/src/main/java/com/dieva/producer/KafkaProducerVerticle.java
