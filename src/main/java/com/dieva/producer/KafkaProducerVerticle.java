@@ -1,5 +1,6 @@
 package com.dieva.producer;
 
+import com.dieva.domain.model.Profession;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Promise;
 import io.vertx.kafka.client.producer.KafkaProducer;
@@ -31,9 +32,11 @@ public class KafkaProducerVerticle extends AbstractVerticle {
         vertx.createHttpServer().requestHandler(req -> {
                     if (req.method().name().equals("POST") && req.path().equals("/send")) {
                         req.bodyHandler(body -> {
-                            String profession = body.toString();
-                            sendToKafka(profession);
-                            req.response().end("Mensaje enviado a Kafka: " + profession);
+
+                            Profession profession = body.toJsonObject().mapTo(Profession.class);
+                            String professionJson = body.toJsonObject().encodePrettily();
+                            sendToKafka(professionJson);
+                            req.response().end("Mensaje enviado a Kafka: " + professionJson);
                         });
                     } else {
                         req.response().setStatusCode(404).end();
